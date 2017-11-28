@@ -189,6 +189,11 @@ for f in ['Variation','Gene']:#Add all categorical features in the list
     lbl.fit(list(test_text_features_df[f].values))
     test_text_features_df[f] = lbl.transform(list(test_text_features_df[f].values))
 
+'''
+train_ids = random.sample(list(train_text.index),int(.8*len(train_text.index)))
+X_train = train_text[train_text.index.isin(train_ids)]
+X_valid = train_text[~train_text.index.isin(train_ids)]
+'''
 
 X_train=train_text_features_df.sample(frac=0.80, replace=False)
 X_train['Class']=pd.to_numeric(pd.Series(X_train['Class']),errors='coerce')
